@@ -1,0 +1,14 @@
+IMAGE_NAME := neotrick
+CONTAINER_NAME := neotrick
+
+build:
+	docker build -t $(IMAGE_NAME) .
+
+run:
+	docker run -d --name $(CONTAINER_NAME) -p 8000:8000 $(IMAGE_NAME)
+
+stop:
+	docker stop $(CONTAINER_NAME) || true
+	docker rm $(CONTAINER_NAME) || true
+
+restart: stop build run
